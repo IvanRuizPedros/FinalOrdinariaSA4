@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_resource_booking">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <div class="row">
+                    <div class="col-6">
+                        <h2>Cita: <t t-esc="o.name" /></h2>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p><strong>Estado:</strong> <t t-esc="o.state" /></p>
+                        <p><strong>Fecha de Inicio:</strong> <t t-esc="o.start" /></p>
+                        <p><strong>Duración:</strong> <t t-esc="o.duration" /> horas</p>
+                    </div>
+                </div>
+                
+                <div class="row mt32">
+                    <div class="col-12">
+                        <h3>Detalles de la Cita</h3>
+                        <p><strong>Descripción:</strong> <t t-raw="o.description" /></p>
+                        <p><strong>Solicitante:</strong> <t t-esc="o.partner_id.name" /></p>
+                        <p><strong>Ubicación:</strong> <t t-esc="o.localitzacio" /></p>
+                        <p><strong>Tipo de Recurso:</strong> <t t-esc="o.type_id.name" /></p>
+                    </div>
+                </div>
+                
+                <div class="row mt32">
+                    <div class="col-12">
+                        <h3>Asistentes</h3>
+                        <ul>
+                            <t t-foreach="o.partner_ids" t-as="attendee">
+                                <li><t t-esc="attendee.name" /></li>
+                            </t>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="row mt32">
+                    <div class="col-12">
+                        <h3>Información Adicional</h3>
+                        <p><strong>Combinación de Recursos:</strong> <t t-esc="o.combination_id.name if o.combination_id else 'N/A'" /></p>
+                        <p><strong>URL de Videollamada:</strong> <t t-esc="o.videocall_location" /></p>
+                        <p><strong>Consejos del Solicitante:</strong> <t t-esc="o.requester_advice" /></p>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
