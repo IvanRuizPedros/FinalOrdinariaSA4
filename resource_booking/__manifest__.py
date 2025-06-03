@@ -52,7 +52,7 @@
         ],
         "web.assets_tests": ["resource_booking/static/src/js/tours/**/*"],
         'web.report_assets_common': [
-            'models/rource_booking_report.py',
+            'models/resource_booking_report.py',
         ],
     },
     "demo": ["demo/res_users_demo.xml"],
