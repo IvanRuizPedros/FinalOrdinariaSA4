@@ -3,10 +3,10 @@
     <report
         id="action_report_resource_booking"
         model="resource.booking"
-        string="Resource Booking Report"
+        string="Informe de Reserva"
         report_type="qweb-pdf"
-        name="your_module.report_resource_booking"
-        file="your_module.report_resource_booking"
+        name="resource_booking.report_resource_booking"
+        file="resource_booking.report_resource_booking"
         print_report_name="'Cita - ' + object.name"
     />
 </odoo>
