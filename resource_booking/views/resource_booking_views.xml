@@ -255,40 +255,42 @@
         </field>
     </record>
     <record id="resource_booking_kanban_view" model="ir.ui.view">
-        <field name="name">Resource booking kanban</field>
-        <field name="model">resource.booking</field>
-        <field name="arch" type="xml">
-            <kanban string="Bookings">
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="type_id"/>
-                <field name="combination_id"/>
-                <field name="prioritari"/>
-                <field name="localitzacio"/>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="o_kanban_record">
-                            <div class="o_kanban_record_title">
-                                <field name="name"/>
-                            </div>
-                            <div class="o_kanban_record_partner">
-                                <field name="partner_id"/>
-                            </div>
-                            <div class="o_kanban_record_type">
-                                <field name="type_id"/>
-                            </div>
-                            <div class="o_kanban_record_prioritari">
-                                <field name="prioritari"/>
-                            </div>
-                            <div class="o_kanban_record_localitzacio">
-                                <field name="localitzacio"/>
-                            </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
+         <field name="name">Resource booking kanban</field>
+         <field name="model">resource.booking</field>
+         <field name="arch" type="xml">
+             <kanban class="o_kanban_small_column" default_group_by="state">
+                 <field name="user_id"/>
+                 <field name="resource_id"/>
+                 <field name="prioritari"/>
+                 <field name="localitzacio"/>
+                 <templates>
+                     <t t-name="kanban-box">
+                         <div class="o_kanban_record">
+                             <div class="o_kanban_header">
+                                 <strong><t t-esc="record.user_id.value"/></strong>
+                             </div>
+                             <div class="o_kanban_details">
+                                 <div>Recurs: <t t-esc="record.resource_id.value"/></div>
+                                 <div>
+                                     <t t-if="record.prioritari.value">
+                                         <span style="color: red; font-weight: bold;">🔴 Prioritari</span>
+                                     </t>
+                                     <t t-if="not record.prioritari.value">
+                                         <span>⚪️ No prioritari</span>
+                                     </t>
+                                 </div>
+                                 <div>
+                                     Localització:
+                                     <t t-esc="dict([('sala','Sala'),('punt_de_venda','Punt de venda')]).get(record.localitzacio.value, '')"/>
+                                 </div>
+                             </div>
+                         </div>
+                     </t>
+                 </templates>
+             </kanban>
+         </field>
+     </record>
+
     <!-- Actions -->
     <record id="resource_booking_action" model="ir.actions.act_window">
         <field name="name">Bookings</field>
